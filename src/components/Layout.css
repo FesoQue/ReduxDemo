@@ -1,3 +1,4 @@
+
 .layout {
   display: flex;
   flex-direction: column;
@@ -9,4 +10,14 @@
   margin-bottom: 20px;
   margin-top: 1rem;
   font-size: 20px;
+}
+
+#alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999999999 !important;
+  background: #ccc !important;
 }

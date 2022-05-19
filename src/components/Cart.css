@@ -1,5 +1,6 @@
 ul {
   list-style-type: none;
+  padding: 0;
 }
 li {
   padding: 10px;
@@ -11,13 +12,31 @@ li {
   cursor: pointer;
 }
 .cart-container {
-  border: 1px solid black;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  transform: translateY(-50%);
+  border: 2px solid black;
   border-radius: 10px;
   margin: 20px;
-  height: 400px;
+  min-height: 400px;
   padding: 10px;
   overflow: scroll;
   overflow-x: hidden;
+  background-color: #f1f2f4;
+  box-shadow: 0px 3px 50px #ccc;
+  z-index: 99999;
+}
+
+@media screen and (min-width: 1000px) {
+  .cart-container {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
 }
 
 .cartItem {

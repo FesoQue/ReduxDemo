@@ -1,11 +1,10 @@
 .products-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
-  justify-items: center;
-  flex-wrap: wrap;
+  width: 90%;
+  margin: 7rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding: 0;
+  gap: 1rem;
 }
 button {
   margin-top: 25px;
@@ -16,26 +15,30 @@ button {
   cursor: pointer;
   background-color: rgba(21, 26, 42, 0.787);
 }
+.products-container li {
+  padding: 0 0 1rem;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+  border-radius: .3rem;
+  overflow: hidden;
+}
 .card {
-  width: 250px;
-  height: 250px;
+  width: 100%;
   display: flex;
-  padding: 10px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 5px 5px 10px #ccc;
 }
 .card img {
-  width: 90%;
-  height: 40%;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 .card > p {
   padding: 10px;
   font-size: 30px;
 }
-.card:hover {
-  box-shadow: 10px 10px 20px #ccc;
+.products-container li:hover {
+  box-shadow: 0px 8px 8px #ccc;
 }
 
 .orderBtn {
