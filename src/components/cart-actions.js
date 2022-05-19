@@ -1,7 +1,8 @@
 import { showNotification } from '../store/ui-slice';
+import { replaceData } from '../store/cart-slice';
 
 // *FETCH DATA FROM FIREBASE
-const fetchData = () => {
+export const fetchData = () => {
   return async (dispatch) => {
     const fetchHandler = async () => {
       const res = await fetch(
@@ -12,7 +13,16 @@ const fetchData = () => {
     };
     try {
       const cartData = await fetchHandler();
-    } catch (error) {}
+      dispatch(replaceData(cartData));
+    } catch (error) {
+      dispatch(
+        showNotification({
+          open: false,
+          message: 'fetching request failed',
+          type: 'error',
+        })
+      );
+    }
   };
 };
 

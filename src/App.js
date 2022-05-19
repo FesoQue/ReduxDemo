@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Notification from './components/Notification';
 import { showNotification } from './store/ui-slice';
-import { sendCartData } from './components/cart-actions';
+import { fetchData, sendCartData } from './components/cart-actions';
 
 let isFirstRender = true;
 
@@ -66,8 +66,14 @@ function App() {
       }
     }); */
 
-    dispatch(sendCartData(cart));
-  }, [cart]);
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
+  }, [cart, dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
 
   return (
     <div className='App'>

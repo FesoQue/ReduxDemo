@@ -6,14 +6,20 @@ const initialState = {
   items: [],
   qty: 0,
   showCart: false,
+  changed: false,
 };
 
 export const cartSlice = createSlice({
   name: 'cart-slice',
   initialState,
   reducers: {
+    // update the content of the cart from firebase realtime db
+    replaceData(state, action) {
+      return { ...state, items: action.payload.items, qty: action.payload.qty };
+    },
     // add item to cart && increase cart item
     addToCart(state, action) {
+      state.changed = true;
       const newItem = action.payload;
       // check if item exist
       const existingItem = state.items.find((item) => item.id === newItem.id);
@@ -35,6 +41,7 @@ export const cartSlice = createSlice({
 
     // decrease cart item
     decrease(state, action) {
+      // state.changed = true;
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
 
@@ -49,6 +56,7 @@ export const cartSlice = createSlice({
 
     // remove item from cart
     removeFromCart(state, action) {
+      state.changed = true;
       const id = action.payload;
       const removeItem = state.items.filter((item) => item.id !== id);
       return { ...state, items: removeItem, qty: state.qty - 1 };
@@ -61,5 +69,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, decrease, removeFromCart, setShowCart } =
+export const { replaceData, addToCart, decrease, removeFromCart, setShowCart } =
   cartSlice.actions;
